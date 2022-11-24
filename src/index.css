@@ -13,3 +13,11 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 }
+
+.active {
+  color: tomato;
+}
+
+.pending {
+  color: greenyellow;
+}

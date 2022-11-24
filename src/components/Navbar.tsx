@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { NavLink } from 'react-router-dom'
 
 const Navbar = (): JSX.Element => {
   const [showNav, setShowNav] = useState(false)
@@ -13,31 +14,43 @@ const Navbar = (): JSX.Element => {
         <div className="flex justify-between items-center text-gray-100">
           <ul className="flex justify-between items-center">
             <li className="m-4">
-              <h1 className=" text-2xl">LOGO</h1>
+              <NavLink to="/" className=" text-2xl">
+                LOGO
+              </NavLink>
             </li>
             <li className=" py-4 px-3">
-              <a href="#">Dashboard</a>
+              <NavLink to="/dashboard">Dashboard</NavLink>
             </li>
           </ul>
-          <ul className="hidden md:flex items-center space-x-1 gap-4">
+          <ul className="hidden md:flex ml-auto">
             <li className=" py-4 px-3">
-              <a href="#">Register</a>
+              <NavLink
+                to="/signup"
+                className={({ isActive }) => (isActive ? 'active' : '')}
+              >
+                Register
+              </NavLink>
             </li>
             <li className=" py-4 px-3">
-              <a href="#">Login</a>
+              <NavLink to="/login">Login</NavLink>
             </li>
           </ul>
-          <div className=" md:hidden">
+          <div className=" md:hidden cursor-pointer mx-2">
             <div onClick={() => toggleNav()}>Burger</div>
           </div>
         </div>
         <div className={` text-gray-100 ${showNav ? ' md:flex' : ' hidden'}`}>
           <ul className="flex flex-col items-center gap-4">
             <li className=" py-2">
-              <a href="#">Register</a>
+              <NavLink
+                to="/signup"
+                className={({ isActive }) => (isActive ? 'active' : '')}
+              >
+                Register
+              </NavLink>
             </li>
             <li className=" py-2">
-              <a href="#">Login</a>
+              <NavLink to="/login">Login</NavLink>
             </li>
           </ul>
         </div>

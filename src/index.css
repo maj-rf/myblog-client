@@ -21,3 +21,7 @@
 .pending {
   color: greenyellow;
 }
+
+form label {
+  display: block;
+}

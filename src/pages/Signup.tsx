@@ -1,9 +1,22 @@
+import { registerUser, TFields } from '../api/userAPI'
+import { Form, redirect } from 'react-router-dom'
+
+export async function action({ request }) {
+  const formData = await request.formData()
+  const fields = Object.fromEntries(formData) as TFields
+  await registerUser(fields)
+  return redirect('/login')
+}
+
 export const Signup = () => {
   return (
     <section>
       <div className=" flex flex-wrap justify-center mt-20">
         <div className="w-full max-w-sm">
-          <form className=" shadow-md bg-white rounded px-8 py-6 flex flex-col gap-3">
+          <Form
+            method="post"
+            className=" shadow-md bg-white rounded px-8 py-6 flex flex-col gap-3"
+          >
             <h1 className="text-2xl">Create an account</h1>
             <div>
               <label htmlFor="username">Username</label>
@@ -33,11 +46,11 @@ export const Signup = () => {
               />
             </div>
             <div>
-              <label htmlFor="confirm-pass">Confirm Password</label>
+              <label htmlFor="confirmpass">Confirm Password</label>
               <input
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
                 type="password"
-                name="confirm-pass"
+                name="confirmpass"
                 placeholder="*******"
               />
             </div>
@@ -47,7 +60,7 @@ export const Signup = () => {
             >
               Register
             </button>
-          </form>
+          </Form>
         </div>
       </div>
     </section>

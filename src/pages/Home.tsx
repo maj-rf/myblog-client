@@ -1,23 +1,24 @@
-import { useState, useEffect } from 'react'
+import { useLoaderData } from 'react-router-dom'
 import { getPosts } from '../api/postAPI'
 import { TPost } from '../types/post'
 
-export const Home = (): JSX.Element => {
-  const [posts, setPosts] = useState<TPost[]>([])
+type HomeLoaderData = {
+  posts: TPost[]
+}
 
-  useEffect(() => {
-    async function fetchPosts() {
-      const posts = await getPosts()
-      setPosts(posts)
-    }
-    fetchPosts()
-  }, [])
+export async function loader() {
+  const posts = await getPosts()
+  return { posts }
+}
+
+export const Home = (): JSX.Element => {
+  const { posts } = useLoaderData() as HomeLoaderData
 
   return (
     <div>
       <h1>This is the Home Page</h1>
       <ul>
-        {posts?.map((post) => {
+        {posts?.map((post: TPost) => {
           return (
             <li key={post._id}>
               <h1>{post.title}</h1>

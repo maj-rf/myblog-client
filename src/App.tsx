@@ -1,7 +1,22 @@
+import { Routes, Route } from 'react-router-dom';
+import { Layout } from './components/Layout';
+import { Home } from './pages/Home';
+import { RecentBlogs } from './pages/RecentBlogs';
+import { Blog } from './pages/Blog';
+import { Login } from './pages/Login';
+import { Profile } from './pages/Profile';
 function App() {
   return (
     <>
-      <div className=" bg-slate-600">Test</div>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="profile" element={<Profile />} />
+          <Route path="/recent" element={<RecentBlogs />} />
+          <Route path="/blog:id" element={<Blog />} />
+        </Route>
+      </Routes>
     </>
   );
 }

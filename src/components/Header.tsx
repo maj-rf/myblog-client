@@ -5,8 +5,8 @@ export const Header = () => {
   const [visibility, setVisibility] = useState(true);
   const [user, setUser] = useState(false);
   return (
-    <div className="bg-secondary">
-      <header className="flex justify-between p-2">
+    <div className="bg-secondary sticky top-0">
+      <header className="flex justify-between p-2 max-w-5xl mx-auto">
         <a href="" className="flex items-center gap-1">
           <svg
             xmlns="http://www.w3.org/2000/svg"

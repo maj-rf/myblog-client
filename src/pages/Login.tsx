@@ -18,8 +18,8 @@ export const Login = () => {
   };
 
   return (
-    <div className="flex items-center justify-center ">
-      <div className="w-full sm:w-96 mx-4 mt-10 rounded-lg border-4 border-b-8 border-r-8 border-slate-800 bg-white shadow-2xl shadow-black">
+    <div className="flex items-center justify-center grow">
+      <div className="w-full sm:w-96 mx-4 rounded-lg border-4 border-b-8 border-r-8 border-slate-800 bg-white shadow-2xl shadow-black">
         <h1 className="text-4xl text-center uppercase p-2 border-b-4 border-slate-800 bg-green-400">
           Login
         </h1>

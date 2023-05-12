@@ -1,23 +1,35 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { useState } from 'react';
 import { BaseButton } from '../components/BaseButton';
 import { EyeIcon, EyeOffIcon } from 'lucide-react';
-type RegisterInput = {
-  username: string;
-  email: string;
-  password: string;
-  confirm_pass: string;
-};
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import * as authService from '../services/authService';
+import { INewUserCredentials } from '../types/types';
+import { notify } from '../utils/utils';
 
 export const Register = () => {
-  const { register, handleSubmit, reset } = useForm<RegisterInput>();
+  const { register, handleSubmit, reset } = useForm<INewUserCredentials>();
   const [passwordShow, setPasswordShow] = useState(false);
   const [confirmShow, setConfirmShow] = useState(false);
+  // const [errors, setErrors] = useState([]);
+  const navigate = useNavigate();
 
-  const handleLogin = (data: RegisterInput) => {
-    console.log(data);
-    reset();
+  const mutation = useMutation({
+    mutationFn: authService.registerUser,
+    onSuccess: (data) => {
+      notify(data.message);
+      navigate('/login');
+      reset();
+    },
+    onError: (error: any) => {
+      // setErrors(error.response.data.message);
+      // TODO error.response.data.message is an array of errors
+    },
+  });
+
+  const handleLogin = (data: INewUserCredentials) => {
+    mutation.mutate(data);
   };
 
   return (
@@ -98,6 +110,7 @@ export const Register = () => {
             Register
           </BaseButton>
         </form>
+
         <div className="text-center py-2 text-gray-600">
           Already have an account?
           <Link

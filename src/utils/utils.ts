@@ -1,6 +1,11 @@
 import { toast } from 'react-toastify';
 
-export const notify = (message: string | string[]) => {
-  if (typeof message === 'string') return toast(message);
-  console.log(message);
+type NotifyProps = {
+  type: 'success' | 'error';
+  message: string;
+};
+
+export const notify = (props: NotifyProps) => {
+  if (props.type === 'success') return toast.success(props.message);
+  return toast.error(props.message);
 };

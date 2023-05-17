@@ -1,9 +1,7 @@
-import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-
+import { useAuthContext } from '../hooks/useAuth';
 export const Header = () => {
-  const [visibility, setVisibility] = useState(true);
-  const [user, setUser] = useState(false);
+  const { user } = useAuthContext();
   return (
     <div className="bg-secondary sticky top-0">
       <header className="flex justify-between p-2 max-w-5xl mx-auto">
@@ -54,18 +52,22 @@ export const Header = () => {
           >
             Profile
           </NavLink>
-          <NavLink
-            to="/login"
-            className={({ isActive, isPending }) =>
-              isPending
-                ? 'text-cyan-200'
-                : isActive
-                ? 'text-orange-500'
-                : 'text-blue-900'
-            }
-          >
-            {user ? 'Logout' : 'Login'}
-          </NavLink>
+          {user ? (
+            <button>Logout</button>
+          ) : (
+            <NavLink
+              to="/login"
+              className={({ isActive, isPending }) =>
+                isPending
+                  ? 'text-cyan-200'
+                  : isActive
+                  ? 'text-orange-500'
+                  : 'text-blue-900'
+              }
+            >
+              Login
+            </NavLink>
+          )}
         </div>
       </header>
     </div>

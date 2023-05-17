@@ -1,20 +1,37 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { useState } from 'react';
 import { BaseButton } from '../components/BaseButton';
 import { EyeIcon, EyeOffIcon } from 'lucide-react';
-type LoginInput = {
-  email: string;
-  password: string;
-};
-
+import { loginUser } from '../services/authService';
+import { IUserCredentials } from '../types/types';
+import { notify } from '../utils/utils';
+import { AxiosError } from 'axios';
+import { useMutation } from '@tanstack/react-query';
 export const Login = () => {
-  const { register, handleSubmit, reset } = useForm<LoginInput>();
+  const { register, handleSubmit, reset } = useForm<IUserCredentials>();
   const [passwordShow, setPasswordShow] = useState(false);
+  const [error, setError] = useState('');
+  const navigate = useNavigate();
 
-  const handleLogin = (data: LoginInput) => {
-    console.log(data);
-    reset();
+  // TODO: Nav doesn't re-render when user just logged-in. Doesn't show logout button
+  const loginMutation = useMutation({
+    mutationFn: loginUser,
+    onSuccess: (data) => {
+      notify({ type: 'success', message: 'Successfully logged in!' });
+      localStorage.setItem('accessToken', JSON.stringify(data));
+      navigate('/');
+      reset();
+    },
+    onError: (error) => {
+      if (error instanceof AxiosError) {
+        setError(error.response?.data.message);
+      }
+    },
+  });
+
+  const handleLogin = (data: IUserCredentials) => {
+    loginMutation.mutate(data);
   };
 
   return (
@@ -62,7 +79,9 @@ export const Login = () => {
           >
             Login
           </BaseButton>
+          {error && <div className="text-red-500 mt-2">{error}</div>}
         </form>
+
         <div className="text-center py-2 text-gray-600">
           Don't have an account yet?
           <Link

@@ -29,7 +29,7 @@ export interface IUser {
 }
 
 export interface IGenericResponse {
-  message: string | string[];
+  message: string;
 }
 
 export interface INewUserCredentials {
@@ -42,6 +42,10 @@ export interface INewUserCredentials {
 export interface IUserCredentials {
   email: string;
   password: string;
+}
+
+export interface ILoginResponse {
+  accessToken: string;
 }
 
 export type PublicUser = Pick<IUser, 'id' | 'username'>;

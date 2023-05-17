@@ -7,24 +7,26 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import * as authService from '../services/authService';
 import { INewUserCredentials } from '../types/types';
 import { notify } from '../utils/utils';
+import { AxiosError } from 'axios';
 
 export const Register = () => {
   const { register, handleSubmit, reset } = useForm<INewUserCredentials>();
   const [passwordShow, setPasswordShow] = useState(false);
   const [confirmShow, setConfirmShow] = useState(false);
-  // const [errors, setErrors] = useState([]);
+  const [error, setError] = useState('');
   const navigate = useNavigate();
 
   const mutation = useMutation({
     mutationFn: authService.registerUser,
     onSuccess: (data) => {
-      notify(data.message);
+      notify({ type: 'success', message: data.message });
       navigate('/login');
       reset();
     },
-    onError: (error: any) => {
-      // setErrors(error.response.data.message);
-      // TODO error.response.data.message is an array of errors
+    onError: (error) => {
+      if (error instanceof AxiosError) {
+        setError(error.response?.data.message);
+      }
     },
   });
 
@@ -109,6 +111,7 @@ export const Register = () => {
           >
             Register
           </BaseButton>
+          {error && <div className="text-red-500 mt-2">{error}</div>}
         </form>
 
         <div className="text-center py-2 text-gray-600">

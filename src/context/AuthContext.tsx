@@ -12,6 +12,7 @@ export const AuthContext = createContext<AuthContextType | null>(null);
 
 export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
   const [user, setUser] = useState<PublicUser | null>(null);
+
   useEffect(() => {
     const accessToken = window.localStorage.getItem('accessToken');
     if (accessToken) {

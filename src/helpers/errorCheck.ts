@@ -15,9 +15,7 @@ function isErrorWithMessage(error: unknown): error is { message: string } {
 
 export function errorCheck(err: unknown) {
   if (isFetchBaseQueryError(err)) {
-    const errMsg = 'error' in err ? err.error : JSON.stringify(err.data);
-    return errMsg;
-  } else if (isErrorWithMessage(err)) {
-    return err.message;
+    const errMsg = 'error' in err ? err.error : err.data;
+    return isErrorWithMessage(errMsg) ? errMsg.message : JSON.stringify(errMsg);
   }
 }

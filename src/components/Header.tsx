@@ -3,18 +3,19 @@ import { NavLink } from 'react-router-dom';
 import { useAppSelector, useAppDispatch } from '../store';
 import { useLogoutMutation } from '../slice/usersApiSlice';
 import { logout } from '../slice/authSlice';
+import { notify } from '../helpers/notify';
 export const Header = () => {
   const [visibility, setVisibility] = useState(true);
 
   const { user } = useAppSelector((state) => state.auth);
   const dispatch = useAppDispatch();
-  const [logoutApiCall] = useLogoutMutation();
+  const [logoutMutation] = useLogoutMutation();
 
-  // TODO localStorge not deleted
   const handleLogout = async () => {
     try {
-      await logoutApiCall(null).unwrap();
-      dispatch(logout);
+      await logoutMutation(null).unwrap();
+      dispatch(logout());
+      notify({ type: 'success', message: 'Logged out!' });
     } catch (err) {
       console.log(err);
     }
@@ -57,20 +58,22 @@ export const Header = () => {
           >
             Home
           </NavLink>
-          <NavLink
-            to="/profile"
-            className={({ isActive, isPending }) =>
-              isPending
-                ? 'text-cyan-200'
-                : isActive
-                ? 'text-orange-500'
-                : 'text-blue-900'
-            }
-          >
-            Profile
-          </NavLink>
           {user ? (
-            <button onClick={handleLogout}>Logout</button>
+            <>
+              <NavLink
+                to="/profile"
+                className={({ isActive, isPending }) =>
+                  isPending
+                    ? 'text-cyan-200'
+                    : isActive
+                    ? 'text-orange-500'
+                    : 'text-blue-900'
+                }
+              >
+                Profile
+              </NavLink>
+              <button onClick={handleLogout}>Logout</button>
+            </>
           ) : (
             <NavLink
               to="/login"

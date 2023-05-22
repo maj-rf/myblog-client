@@ -6,6 +6,8 @@ import { Blog } from './pages/Blog';
 import { Login } from './pages/Login';
 import { Profile } from './pages/Profile';
 import { Register } from './pages/Register';
+import { ProtectedRoute } from './components/ProtectedRoute';
+import { Toaster } from 'react-hot-toast';
 function App() {
   return (
     <>
@@ -14,11 +16,14 @@ function App() {
           <Route index element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="profile" element={<Profile />} />
+          <Route path="" element={<ProtectedRoute />}>
+            <Route path="profile" element={<Profile />} />
+          </Route>
           <Route path="/recent" element={<RecentBlogs />} />
           <Route path="/blog:id" element={<Blog />} />
         </Route>
       </Routes>
+      <Toaster />
     </>
   );
 }

@@ -1,8 +1,14 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { BaseButton } from '../components/BaseButton';
 import { EyeIcon, EyeOffIcon } from 'lucide-react';
+import { useAppDispatch, useAppSelector } from '../store';
+import { notify } from '../helpers/notify';
+import { setCredentials } from '../slice/authSlice';
+import { errorCheck } from '../helpers/errorCheck';
+import { useRegisterMutation } from '../slice/usersApiSlice';
+
 type RegisterInput = {
   username: string;
   email: string;
@@ -14,10 +20,27 @@ export const Register = () => {
   const { register, handleSubmit, reset } = useForm<RegisterInput>();
   const [passwordShow, setPasswordShow] = useState(false);
   const [confirmShow, setConfirmShow] = useState(false);
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  const { user } = useAppSelector((state) => state.auth);
+  const [registerMutation, { error }] = useRegisterMutation();
 
-  const handleLogin = (data: RegisterInput) => {
-    console.log(data);
-    reset();
+  useEffect(() => {
+    if (user) {
+      navigate('/');
+    }
+  }, [navigate, user]);
+
+  const handleRegister = async (data: RegisterInput) => {
+    try {
+      const res = await registerMutation(data).unwrap();
+      dispatch(setCredentials({ ...res }));
+      notify({ type: 'success', message: 'Successfully registered!' });
+      reset();
+      navigate('/');
+    } catch (err) {
+      console.log(errorCheck(err));
+    }
   };
 
   return (
@@ -26,7 +49,7 @@ export const Register = () => {
         <h1 className="text-4xl text-center uppercase p-2 border-b-4 border-slate-800 bg-orange-300">
           Register
         </h1>
-        <form onSubmit={handleSubmit(handleLogin)} className="p-4">
+        <form onSubmit={handleSubmit(handleRegister)} className="p-4">
           <div className="mt-2">
             <label htmlFor="username" className="uppercase text-slate-500">
               Username
@@ -97,6 +120,9 @@ export const Register = () => {
           >
             Register
           </BaseButton>
+          {error && (
+            <p className="text-red-500 mt-2 text-center">{errorCheck(error)}</p>
+          )}
         </form>
         <div className="text-center py-2 text-gray-600">
           Already have an account?

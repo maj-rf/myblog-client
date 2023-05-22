@@ -7,6 +7,7 @@ import { useAppDispatch, useAppSelector } from '../store';
 import { useLoginMutation } from '../slice/usersApiSlice';
 import { setCredentials } from '../slice/authSlice';
 import { errorCheck } from '../helpers/errorCheck';
+import { notify } from '../helpers/notify';
 
 type LoginInput = {
   email: string;
@@ -16,7 +17,7 @@ type LoginInput = {
 export const Login = () => {
   const { register, handleSubmit, reset } = useForm<LoginInput>();
   const [passwordShow, setPasswordShow] = useState(false);
-  const [login] = useLoginMutation();
+  const [login, { error }] = useLoginMutation();
   const { user } = useAppSelector((state) => state.auth);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -31,6 +32,7 @@ export const Login = () => {
     try {
       const res = await login(data).unwrap();
       dispatch(setCredentials({ ...res }));
+      notify({ type: 'success', message: 'Logged in!' });
       reset();
       navigate('/');
     } catch (err) {
@@ -83,6 +85,9 @@ export const Login = () => {
           >
             Login
           </BaseButton>
+          {error && (
+            <p className="text-red-500 mt-2 text-center">{errorCheck(error)}</p>
+          )}
         </form>
         <div className="text-center py-2 text-gray-600">
           Don't have an account yet?

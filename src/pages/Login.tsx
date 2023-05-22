@@ -1,8 +1,13 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { BaseButton } from '../components/BaseButton';
 import { EyeIcon, EyeOffIcon } from 'lucide-react';
+import { useAppDispatch, useAppSelector } from '../store';
+import { useLoginMutation } from '../slice/usersApiSlice';
+import { setCredentials } from '../slice/authSlice';
+import { errorCheck } from '../helpers/errorCheck';
+
 type LoginInput = {
   email: string;
   password: string;
@@ -11,10 +16,26 @@ type LoginInput = {
 export const Login = () => {
   const { register, handleSubmit, reset } = useForm<LoginInput>();
   const [passwordShow, setPasswordShow] = useState(false);
+  const [login] = useLoginMutation();
+  const { user } = useAppSelector((state) => state.auth);
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
-  const handleLogin = (data: LoginInput) => {
-    console.log(data);
-    reset();
+  useEffect(() => {
+    if (user) {
+      navigate('/');
+    }
+  }, [navigate, user]);
+
+  const handleLogin = async (data: LoginInput) => {
+    try {
+      const res = await login(data).unwrap();
+      dispatch(setCredentials({ ...res }));
+      reset();
+      navigate('/');
+    } catch (err) {
+      console.log(errorCheck(err));
+    }
   };
 
   return (

@@ -1,9 +1,24 @@
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-
+import { useAppSelector, useAppDispatch } from '../store';
+import { useLogoutMutation } from '../slice/usersApiSlice';
+import { logout } from '../slice/authSlice';
 export const Header = () => {
   const [visibility, setVisibility] = useState(true);
-  const [user, setUser] = useState(false);
+
+  const { user } = useAppSelector((state) => state.auth);
+  const dispatch = useAppDispatch();
+  const [logoutApiCall] = useLogoutMutation();
+
+  // TODO localStorge not deleted
+  const handleLogout = async () => {
+    try {
+      await logoutApiCall(null).unwrap();
+      dispatch(logout);
+    } catch (err) {
+      console.log(err);
+    }
+  };
   return (
     <div className="bg-secondary sticky top-0">
       <header className="flex justify-between p-2 max-w-5xl mx-auto">
@@ -54,18 +69,22 @@ export const Header = () => {
           >
             Profile
           </NavLink>
-          <NavLink
-            to="/login"
-            className={({ isActive, isPending }) =>
-              isPending
-                ? 'text-cyan-200'
-                : isActive
-                ? 'text-orange-500'
-                : 'text-blue-900'
-            }
-          >
-            {user ? 'Logout' : 'Login'}
-          </NavLink>
+          {user ? (
+            <button onClick={handleLogout}>Logout</button>
+          ) : (
+            <NavLink
+              to="/login"
+              className={({ isActive, isPending }) =>
+                isPending
+                  ? 'text-cyan-200'
+                  : isActive
+                  ? 'text-orange-500'
+                  : 'text-blue-900'
+              }
+            >
+              Login
+            </NavLink>
+          )}
         </div>
       </header>
     </div>

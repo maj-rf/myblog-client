@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 export const RecentBlogs = () => {
   const { data } = useGetAllBlogsQuery();
   return (
-    <div className="flex flex-col items-center justify-center border border-white">
+    <div className="flex flex-col items-center justify-center mb-4">
       <h1>Recent Blogs</h1>
       <ul className="grid sm:grid-cols-2 grid-flow-row gap-2">
         {data?.map((blog, index) => (
@@ -17,7 +17,7 @@ export const RecentBlogs = () => {
             }
           >
             <img
-              className="object-cover h-60 w-full"
+              className="object-cover h-72 w-full"
               src={placeholderblog}
               alt={`placeholder image for ${blog.id}`}
             />

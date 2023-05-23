@@ -7,6 +7,7 @@ import { Profile } from './pages/Profile';
 import { Register } from './pages/Register';
 import { ProtectedRoute } from './components/ProtectedRoute';
 import { Toaster } from 'react-hot-toast';
+import { NotFound } from './components/NotFound';
 function App() {
   return (
     <>
@@ -19,6 +20,7 @@ function App() {
             <Route path="/profile" element={<Profile />} />
           </Route>
           <Route path="/blogs/:id" element={<Blog />} />
+          <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
       <Toaster />

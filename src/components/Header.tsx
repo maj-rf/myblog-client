@@ -1,12 +1,9 @@
-import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useAppSelector, useAppDispatch } from '../store';
 import { useLogoutMutation } from '../slice/usersApiSlice';
 import { logout } from '../slice/authSlice';
 import { notify } from '../helpers/notify';
 export const Header = () => {
-  const [visibility, setVisibility] = useState(true);
-
   const { user } = useAppSelector((state) => state.auth);
   const dispatch = useAppDispatch();
   const [logoutMutation] = useLogoutMutation();
@@ -21,8 +18,8 @@ export const Header = () => {
     }
   };
   return (
-    <div className="bg-secondary sticky top-0">
-      <header className="flex justify-between p-2 max-w-5xl mx-auto">
+    <div className="bg-primary sticky top-0">
+      <header className="flex justify-between p-4 max-w-5xl mx-auto">
         <a href="" className="flex items-center gap-1">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -43,18 +40,22 @@ export const Header = () => {
               d="M162.317 150.441c4.233 3.953 3.34 10.99-1.761 13.88l-5.243.853l-30.939.358c-20.86.195-27.128-.216-28.409-.724l-.04-.017c-2.518-1.097-4.862-4.143-5.267-6.845c-.386-2.573.908-6.11 2.89-7.905l.441-.384c1.954-1.605 4.202-1.893 22.635-1.958l21.317-.022c21.549.016 21.738.301 24.376 2.764ZM131.944 92.09c3.286 1.66 4.714 4 4.714 7.727c0 3.236-1.24 5.54-3.994 7.398l-.534.341c-1.34.8-2.654.939-13.041 1.02l-6.703.038c-8.309.017-14.705-.157-15.727-.439c-5.864-1.616-8.055-10.029-3.745-14.38l.401-.398c2.307-2.235 3.775-2.466 17.292-2.487l10.186.008c8.608.04 9.295.235 11.151 1.172Z"
             ></path>
           </svg>
-          <span className="font-bold text-xl hidden md:block">Blobber</span>
+          <span className="font-bold text-xl hidden md:block text-cleanWhite">
+            Sulat
+          </span>
         </a>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 text-cleanWhite">
           <NavLink
             to="/"
-            className={({ isActive, isPending }) =>
-              isPending
-                ? 'text-cyan-200'
-                : isActive
-                ? 'text-orange-500'
-                : 'text-blue-900'
-            }
+            className={({ isActive, isPending }) => {
+              return (
+                (isPending
+                  ? 'text-gray-400'
+                  : isActive
+                  ? 'underline underline-offset-4 decoration-wavy decoration-2'
+                  : '') + ' hover:text-accent'
+              );
+            }}
           >
             Home
           </NavLink>
@@ -62,34 +63,60 @@ export const Header = () => {
             <>
               <NavLink
                 to="/profile"
-                className={({ isActive, isPending }) =>
-                  isPending
-                    ? 'text-cyan-200'
-                    : isActive
-                    ? 'text-orange-500'
-                    : 'text-blue-900'
-                }
+                className={({ isActive, isPending }) => {
+                  return (
+                    (isPending
+                      ? 'text-gray-400'
+                      : isActive
+                      ? 'underline underline-offset-4 decoration-wavy decoration-2'
+                      : '') + ' hover:text-accent'
+                  );
+                }}
               >
                 Profile
               </NavLink>
-              <button onClick={handleLogout}>Logout</button>
+              <button
+                onClick={handleLogout}
+                className="bg-blue-200 px-2 text-black rounded-lg hover:bg-accent"
+              >
+                Logout
+              </button>
             </>
           ) : (
-            <NavLink
-              to="/login"
-              className={({ isActive, isPending }) =>
-                isPending
-                  ? 'text-cyan-200'
-                  : isActive
-                  ? 'text-orange-500'
-                  : 'text-blue-900'
-              }
-            >
-              Login
-            </NavLink>
+            <>
+              <NavLink
+                to="/login"
+                className={({ isActive, isPending }) => {
+                  return (
+                    (isPending
+                      ? 'text-gray-400'
+                      : isActive
+                      ? 'underline underline-offset-4 decoration-wavy decoration-2'
+                      : '') + ' hover:text-accent'
+                  );
+                }}
+              >
+                Login
+              </NavLink>
+              <NavLink
+                to="/register"
+                className={({ isActive, isPending }) => {
+                  return (
+                    (isPending
+                      ? 'text-gray-400'
+                      : isActive
+                      ? 'underline underline-offset-4 decoration-wavy decoration-2'
+                      : '') + ' hover:text-accent'
+                  );
+                }}
+              >
+                Register
+              </NavLink>
+            </>
           )}
         </div>
       </header>
+      <hr className="max-w-5xl mx-auto"></hr>
     </div>
   );
 };

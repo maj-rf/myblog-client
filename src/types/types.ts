@@ -8,7 +8,9 @@ export interface IComment {
 }
 
 export interface IBlog {
-  user: string;
+  user: {
+    username: string;
+  };
   title: string;
   content: string;
   published: boolean;

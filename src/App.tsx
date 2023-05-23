@@ -1,7 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
 import { Layout } from './components/Layout';
 import { Home } from './pages/Home';
-import { RecentBlogs } from './pages/RecentBlogs';
 import { Blog } from './pages/Blog';
 import { Login } from './pages/Login';
 import { Profile } from './pages/Profile';
@@ -17,10 +16,9 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="" element={<ProtectedRoute />}>
-            <Route path="profile" element={<Profile />} />
+            <Route path="/profile" element={<Profile />} />
           </Route>
-          <Route path="/recent" element={<RecentBlogs />} />
-          <Route path="/blog:id" element={<Blog />} />
+          <Route path="/blogs/:id" element={<Blog />} />
         </Route>
       </Routes>
       <Toaster />

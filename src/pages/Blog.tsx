@@ -13,10 +13,10 @@ export const Blog = () => {
   return (
     <section className="flex flex-col justify-between p-4 max-w-5xl mx-auto text-cleanWhite">
       <div className="border border-white p-2">
-        <h1 className="text-accent">{data?.title}</h1>
-        <p className="text-gray-300">
+        <h1 className="mb-2 text-3xl font-bold text-accent">{data?.title}</h1>
+        <h2 className="mb-1 text-xl font-medium text-gray-300">
           by {data?.user.username}, {dateCreated}
-        </p>
+        </h2>
         <p>{data?.content}</p>
       </div>
       <div className="mt-4">

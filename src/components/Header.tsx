@@ -41,7 +41,7 @@ export const Header = () => {
             ></path>
           </svg>
           <span className="font-bold text-xl hidden md:block text-cleanWhite">
-            Sulat
+            muni-muni
           </span>
         </a>
         <div className="flex items-center gap-2 text-cleanWhite">

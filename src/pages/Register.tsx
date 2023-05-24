@@ -46,11 +46,11 @@ export const Register = () => {
   return (
     <div className="flex items-center justify-center grow">
       <div className="w-full sm:w-96 mx-4 rounded-lg border-4 border-b-8 border-r-8 border-slate-800 bg-white shadow-2xl shadow-black">
-        <h1 className="text-4xl text-center uppercase p-2 border-b-4 border-slate-800 bg-orange-300">
+        <h1 className="mb-2 text-3xl font-bold text-center uppercase p-2 border-b-4 border-slate-800 bg-orange-300">
           Register
         </h1>
         <form onSubmit={handleSubmit(handleRegister)} className="p-4">
-          <div className="mt-2">
+          <div>
             <label htmlFor="username" className="uppercase text-slate-500">
               Username
             </label>
@@ -62,7 +62,6 @@ export const Register = () => {
               {...register('username')}
             />
           </div>
-
           <div className="mt-2">
             <label htmlFor="email" className="uppercase text-slate-500">
               Email

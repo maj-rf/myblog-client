@@ -9,6 +9,9 @@ export default {
         accent: '#1BD9D8',
         cleanWhite: '#E6E6E6',
       },
+      gridTemplateColumns: {
+        fluid: 'repeat(auto-fit, minmax(20rem, 1fr))',
+      },
     },
     fontFamily: {
       atkinson: ['Atkinson Hyperlegible', 'sans-serif'],

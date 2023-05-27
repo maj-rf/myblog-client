@@ -2,12 +2,15 @@ import { useParams } from 'react-router-dom';
 import { useGetBlogQuery } from '../slice/blogsApiSlice';
 import { dateFormatter } from '../helpers/dateFormatter';
 import { useAppSelector } from '../store';
+import { Comments } from '../components/Comments';
+import { errorCheck } from '../helpers/errorCheck';
 export const Blog = () => {
   const params = useParams();
   const id = params.id || '';
-  const { data, isLoading } = useGetBlogQuery(id);
+  const { data, isLoading, error } = useGetBlogQuery(id);
   const { user } = useAppSelector((state) => state.auth);
 
+  if (error) return <div>{errorCheck(error)}</div>;
   if (isLoading) return <div>Loading..</div>;
 
   const dateCreated = dateFormatter(data?.createdAt);
@@ -29,6 +32,7 @@ export const Blog = () => {
           </form>
         </div>
       )}
+      <Comments id={id} />
     </section>
   );
 };

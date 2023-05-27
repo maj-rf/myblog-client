@@ -1,6 +1,8 @@
 export interface IComment {
   content: string;
-  user: string; // userId
+  user: {
+    username: string;
+  };
   blog: string; // blogId
   id: string;
   createdAt: string;

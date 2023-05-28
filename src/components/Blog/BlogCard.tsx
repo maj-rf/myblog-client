@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
-import { IBlog } from '../types/types';
-import placeholderblog from '../assets/placeholderblog.jpg';
+import { IBlog } from '../../types/types';
+import placeholderblog from '../../assets/placeholderblog.jpg';
 
 interface BlogDetailProps {
   blog: IBlog;

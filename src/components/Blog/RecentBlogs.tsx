@@ -1,4 +1,4 @@
-import { useGetAllBlogsQuery } from '../slice/blogsApiSlice';
+import { useGetAllBlogsQuery } from '../../slice/blogsApiSlice';
 import { BlogCard } from './BlogCard';
 
 export const RecentBlogs = () => {

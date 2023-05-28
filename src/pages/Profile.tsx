@@ -1,4 +1,4 @@
-import { ProfileBlogs } from '../components/ProfileBlogs';
+import { ProfileBlogs } from '../components/Blog/ProfileBlogs';
 import { useAppSelector } from '../store';
 export const Profile = () => {
   const { user } = useAppSelector((state) => state.auth);

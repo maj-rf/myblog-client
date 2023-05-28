@@ -1,4 +1,4 @@
-import { useGetProfileBlogsQuery } from '../slice/blogsApiSlice';
+import { useGetProfileBlogsQuery } from '../../slice/blogsApiSlice';
 import { BlogCard } from './BlogCard';
 import { useLocation } from 'react-router-dom';
 export const ProfileBlogs = () => {

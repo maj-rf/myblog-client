@@ -3,7 +3,7 @@ import hero from '../assets/hero.png';
 import { Link } from 'react-router-dom';
 export const Home = () => {
   return (
-    <section className="flex-1 max-w-5xl mx-auto mb-4">
+    <section className="flex-1 mb-4">
       <div className="flex flex-col md:flex-row items-center justify-center gap-4 min-h-screen px-4">
         <div className="w-full md:w-2/3 text-center md:text-left">
           <h1 className="mb-2 mt-8 md:mt-0 font-bold text-6xl md:text-7xl text-accent">

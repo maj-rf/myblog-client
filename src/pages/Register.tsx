@@ -58,7 +58,7 @@ export const Register = () => {
               type="text"
               id="username"
               placeholder="your_username"
-              className="w-full my-2 py-2 px-3 border border-slate-600 rounded-lg shadow-md shadow-violet-300 focus:outline-none focus:ring focus:ring-violet-300 transition duration-300"
+              className="w-full my-2 py-1 px-3 border border-slate-600 rounded-lg shadow-md shadow-violet-300 focus:outline-none focus:ring focus:ring-violet-300 transition duration-300"
               {...register('username')}
             />
           </div>
@@ -70,7 +70,7 @@ export const Register = () => {
               type="email"
               id="email"
               placeholder="your@email.com"
-              className="w-full my-2 py-2 px-3 border border-slate-600 rounded-lg shadow-md shadow-violet-300 focus:outline-none focus:ring focus:ring-violet-300 transition duration-300"
+              className="w-full my-2 py-1 px-3 border border-slate-600 rounded-lg shadow-md shadow-violet-300 focus:outline-none focus:ring focus:ring-violet-300 transition duration-300"
               {...register('email')}
             />
           </div>
@@ -83,7 +83,7 @@ export const Register = () => {
               type={passwordShow ? 'text' : 'password'}
               id="password"
               placeholder="********"
-              className="w-full my-2 py-2 px-3 border border-slate-600 rounded-lg shadow-md shadow-violet-300 focus:outline-none focus:ring focus:ring-violet-300 transition duration-300"
+              className="w-full my-2 py-1 px-3 border border-slate-600 rounded-lg shadow-md shadow-violet-300 focus:outline-none focus:ring focus:ring-violet-300 transition duration-300"
               {...register('password')}
             />
             <button
@@ -102,7 +102,7 @@ export const Register = () => {
               type={confirmShow ? 'text' : 'password'}
               id="confirm_pass"
               placeholder="********"
-              className="w-full my-2 py-2 px-3 border border-slate-600 rounded-lg shadow-md shadow-violet-300 focus:outline-none focus:ring focus:ring-violet-300 transition duration-300"
+              className="w-full my-2 py-1 px-3 border border-slate-600 rounded-lg shadow-md shadow-violet-300 focus:outline-none focus:ring focus:ring-violet-300 transition duration-300"
               {...register('confirm_pass')}
             />
             <button

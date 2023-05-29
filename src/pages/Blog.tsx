@@ -11,7 +11,7 @@ export const Blog = () => {
   const id = params.id || '';
 
   return (
-    <section className="flex flex-col justify-between p-4 max-w-5xl mx-auto text-cleanWhite">
+    <section className="flex flex-col p-4 text-cleanWhite sm:w-3/4 sm:mx-auto">
       <BlogBody id={id} />
       {user && <CommentForm id={id} />}
       <Comments id={id} />

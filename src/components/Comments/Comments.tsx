@@ -17,7 +17,9 @@ export const Comments = ({ id }: CommentsProps) => {
         {data?.map((comment) => (
           <li key={comment.id}>
             <div className="flex gap-2 ">
-              <p>{comment.user.username}</p>
+              <p className="text-accent text-xl font-semibold">
+                {comment.user.username}
+              </p>
               <p>{dateFormatter(comment.createdAt)}</p>
             </div>
             <p>{comment.content}</p>

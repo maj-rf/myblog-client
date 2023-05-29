@@ -15,6 +15,7 @@ export default {
     },
     fontFamily: {
       atkinson: ['Atkinson Hyperlegible', 'sans-serif'],
+      inter: ['Inter', 'sans-serif'],
     },
   },
   plugins: [],

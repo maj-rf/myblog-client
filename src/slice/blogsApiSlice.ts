@@ -3,8 +3,8 @@ import { apiSlice } from './apiSlice';
 
 export const blogsApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
-    getAllBlogs: builder.query<IBlog[], void>({
-      query: () => 'blogs/all',
+    getRecentBlogs: builder.query<IBlog[], void>({
+      query: () => 'blogs/recent',
       providesTags: (result) =>
         result
           ? [
@@ -18,10 +18,28 @@ export const blogsApiSlice = apiSlice.injectEndpoints({
     }),
     getProfileBlogs: builder.query<IBlog[], void>({
       query: () => 'blogs/profile',
+      providesTags: (result) =>
+        result
+          ? [
+              ...result.map(({ id }) => ({ type: 'Blog' as const, id })),
+              { type: 'Blog', id: 'LIST' },
+            ]
+          : [{ type: 'Blog', id: 'LIST' }],
+    }),
+    deleteBlog: builder.mutation({
+      query: (id) => ({
+        url: `blogs/blog/${id}`,
+        method: 'DELETE',
+      }),
+      invalidatesTags: ['Blog'],
     }),
   }),
   overrideExisting: false,
 });
 
-export const { useGetAllBlogsQuery, useGetBlogQuery, useGetProfileBlogsQuery } =
-  blogsApiSlice;
+export const {
+  useGetRecentBlogsQuery,
+  useGetBlogQuery,
+  useGetProfileBlogsQuery,
+  useDeleteBlogMutation,
+} = blogsApiSlice;

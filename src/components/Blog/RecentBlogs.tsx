@@ -1,8 +1,8 @@
-import { useGetAllBlogsQuery } from '../../slice/blogsApiSlice';
+import { useGetRecentBlogsQuery } from '../../slice/blogsApiSlice';
 import { BlogCard } from './BlogCard';
 
 export const RecentBlogs = () => {
-  const { data } = useGetAllBlogsQuery();
+  const { data } = useGetRecentBlogsQuery();
   return (
     <section className="flex flex-col items-center justify-center px-4 mt-8 md:mt-0">
       <h1 className="mb-2 text-3xl text-center font-bold text-cleanWhite">

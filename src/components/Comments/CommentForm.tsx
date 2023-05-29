@@ -26,7 +26,10 @@ export const CommentForm = ({ id }: { id: string }) => {
           id="comment_content"
           {...register('comment_content')}
         />
-        <button disabled={isLoading} className="bg-accent text-black px-2 py-1">
+        <button
+          disabled={isLoading}
+          className="w-full sm:w-auto bg-accent text-black px-2 py-1"
+        >
           Submit Comment
         </button>
         {error && (

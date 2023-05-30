@@ -4,8 +4,9 @@ import { useRef } from 'react';
 import { useDeleteBlogMutation } from '../../slice/blogsApiSlice';
 import { dateFormatter } from '../../helpers/dateFormatter';
 import { Trash, Edit } from 'lucide-react';
+
 export const ProfileBlogCard = ({ blog }: { blog: IBlog }) => {
-  const [deleteBlog, { error }] = useDeleteBlogMutation();
+  const [deleteBlog] = useDeleteBlogMutation();
   const ref = useRef<HTMLDialogElement | null>(null);
 
   const showModal = () => {
@@ -25,7 +26,8 @@ export const ProfileBlogCard = ({ blog }: { blog: IBlog }) => {
         <p className="mb-1">Status: {blog.published ? 'Published' : 'Draft'}</p>
         <p className="mb-1">Created: {dateFormatter(blog.createdAt)}</p>
         <Link
-          to={`edit/${blog.id}`}
+          to={`/profile/blogs/${blog.id}/edit`}
+          state={{ blog: blog }}
           className="inline-flex items-center gap-1 px-3 py-2 mr-4 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300"
         >
           <Edit />

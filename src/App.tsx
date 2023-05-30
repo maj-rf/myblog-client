@@ -8,6 +8,7 @@ import { Register } from './pages/Register';
 import { ProtectedRoute } from './components/ProtectedRoute';
 import { Toaster } from 'react-hot-toast';
 import { NotFound } from './components/NotFound';
+import { ProfileBlogForm } from './components/Profile/ProfileBlogForm';
 function App() {
   return (
     <>
@@ -18,6 +19,10 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="" element={<ProtectedRoute />}>
             <Route path="/profile" element={<Profile />} />
+            <Route
+              path="/profile/blogs/:id/edit"
+              element={<ProfileBlogForm />}
+            />
           </Route>
           <Route path="/blogs/:id" element={<Blog />} />
           <Route path="*" element={<NotFound />} />

@@ -18,7 +18,7 @@ export const ProfileBlogCard = ({ blog }: { blog: IBlog }) => {
   };
 
   return (
-    <div className="bg-secondary p-4 border-4 rounded-lg border-cleanWhite">
+    <div className="bg-primary-700 p-4 border-4 rounded-lg border-cleanWhite">
       <div className="p-2">
         <h2 className="mb-2 text-2xl font-semibold tracking-tight">
           {blog.title}

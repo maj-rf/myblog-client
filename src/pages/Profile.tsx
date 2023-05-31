@@ -4,13 +4,14 @@ export const Profile = () => {
   const { user } = useAppSelector((state) => state.auth);
 
   return (
-    <section className="flex flex-col p-4 text-cleanWhite">
-      <div className="mb-8 w-full mx-auto">
+    <section className="p-4 text-cleanWhite ">
+      <div className="max-w-5xl mx-auto">
         <h1>{user?.username}'s Profile</h1>
         <p>Email: {user?.email}</p>
         <button>Edit Profile</button>
+
+        <ProfileBlogs />
       </div>
-      <ProfileBlogs />
     </section>
   );
 };

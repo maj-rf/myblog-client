@@ -19,8 +19,11 @@ export const ProfileBlogForm = () => {
     navigate('/profile');
   };
   return (
-    <div>
-      <form onSubmit={handleSubmit(handleUpdateBlog)}>
+    <div className="">
+      <form
+        onSubmit={handleSubmit(handleUpdateBlog)}
+        className="max-w-5xl mx-auto p-4"
+      >
         <label htmlFor="title" className="text-cleanWhite">
           Title
         </label>
@@ -35,7 +38,7 @@ export const ProfileBlogForm = () => {
         </label>
         <textarea
           className="text-black w-full p-2 resize-none"
-          rows={3}
+          rows={15}
           defaultValue={blog.content}
           id="content"
           {...register('content')}

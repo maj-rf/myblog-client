@@ -12,7 +12,7 @@ export const BlogCard = ({ blog, index, path }: BlogDetailProps) => {
   return (
     <div
       className={
-        'bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 hover:-translate-y-1 duration-300 hover:outline hover:outline-4 hover:outline-accent' +
+        'bg-primary-700 text-cleanWhite w-80 border rounded-xl hover:-translate-y-1 duration-300 hover:outline hover:outline-4 hover:outline-accent' +
         (index === 0 ? ' md:col-span-full' : '')
       }
     >
@@ -22,10 +22,10 @@ export const BlogCard = ({ blog, index, path }: BlogDetailProps) => {
         alt={`picture of ${blog.title}`}
       />
       <div className="p-5">
-        <h2 className="mb-2 text-2xl font-semibold tracking-tight text-gray-900">
+        <h2 className="mb-2 text-2xl font-semibold tracking-tight">
           {blog.title}
         </h2>
-        <p className="mb-3 font-normal text-gray-700 dark:text-gray-400 truncate text-ellipsis">
+        <p className="mb-3 font-normal truncate text-ellipsis">
           {blog.content}
         </p>
         <Link

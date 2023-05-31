@@ -19,7 +19,7 @@ export const Header = () => {
   };
   return (
     <div className="bg-primary sticky top-0 z-10">
-      <header className="flex justify-between p-4">
+      <header className="flex justify-between p-4 max-w-5xl mx-auto ">
         <Link to="/" className="flex items-center gap-1">
           <svg
             xmlns="http://www.w3.org/2000/svg"

@@ -11,10 +11,12 @@ export const Blog = () => {
   const id = params.id || '';
 
   return (
-    <section className="flex flex-col p-4 text-cleanWhite sm:w-3/4 sm:mx-auto">
-      <BlogBody id={id} />
-      {user && <CommentForm id={id} />}
-      <Comments id={id} />
+    <section className="p-4 text-cleanWhite">
+      <div className="sm:w-3/4 sm:mx-auto">
+        <BlogBody id={id} />
+        {user && <CommentForm id={id} />}
+        <Comments id={id} />
+      </div>
     </section>
   );
 };

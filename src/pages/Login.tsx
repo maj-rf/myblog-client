@@ -89,7 +89,7 @@ export const Login = () => {
             <p className="text-red-500 mt-2 text-center">{errorCheck(error)}</p>
           )}
         </form>
-        <div className="text-center py-2 text-gray-600">
+        <div className="text-center py-2 text-gray-600 bg-gray-300 w-full">
           Don't have an account yet?
           <Link
             to="/register"

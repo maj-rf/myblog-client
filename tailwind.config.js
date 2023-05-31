@@ -4,10 +4,14 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: '#212737',
-        secondary: '#374254',
-        accent: '#1BD9D8',
-        cleanWhite: '#E6E6E6',
+        primary: '#202855',
+        'primary-700': '#1D2147',
+        'primary-400': '#535B82',
+        'primary-300': '#4D5593',
+        'primary-200': '#7982AB',
+        secondary: '#5572ED',
+        accent: '#09D871',
+        cleanWhite: '#FFFFFF',
       },
       gridTemplateColumns: {
         fluid: 'repeat(auto-fit, minmax(20rem, 1fr))',

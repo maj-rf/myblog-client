@@ -3,15 +3,15 @@ import hero from '../assets/hero.png';
 import { Link } from 'react-router-dom';
 export const Home = () => {
   return (
-    <section className="flex-1 mb-4">
-      <div className="flex flex-col md:flex-row items-center justify-center gap-4 min-h-screen px-4">
+    <section className="flex-1 pb-4">
+      <div className="flex flex-col lg:flex-row items-center justify-center gap-4 min-h-screen px-4 max-w-5xl mx-auto ">
         <div className="w-full md:w-2/3 text-center md:text-left">
           <h1 className="mb-2 mt-8 md:mt-0 font-bold text-6xl md:text-7xl text-accent">
             Muni-muni
           </h1>
           <h2 className="mb-4 text-2xl font-medium text-cleanWhite">
             A Filipino word which occasionally means{' '}
-            <i>to reflect, to ponder, or to speculate.</i>.
+            <i>to reflect, to ponder, or to speculate.</i>
             <br />
             Share your thoughts and stories with the world through blogging,
             anytime and anywhere.

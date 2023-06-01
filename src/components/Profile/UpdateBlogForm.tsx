@@ -3,10 +3,10 @@ import { IBlog } from '../../types/types';
 import { useForm } from 'react-hook-form';
 import { useUpdateBlogMutation } from '../../slice/blogsApiSlice';
 import { errorCheck } from '../../helpers/errorCheck';
-
+import { notify } from '../../helpers/notify';
 type BlogInput = Pick<IBlog, 'title' | 'content' | 'published'>;
 
-export const ProfileBlogForm = () => {
+export const UpdateBlogForm = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const blog = location.state?.blog as IBlog;
@@ -14,10 +14,17 @@ export const ProfileBlogForm = () => {
   const { register, handleSubmit, reset } = useForm<BlogInput>();
 
   const handleUpdateBlog = async (data: BlogInput) => {
-    await updateBlog({ id: blog.id, data });
-    reset();
-    navigate('/profile');
+    try {
+      const res = await updateBlog({ id: blog.id, data }).unwrap();
+      notify({ type: 'success', message: res.message });
+      reset();
+      navigate('/profile');
+    } catch (error) {
+      const message = errorCheck(error);
+      if (message) notify({ type: 'error', message });
+    }
   };
+
   return (
     <div className="">
       <form
@@ -38,7 +45,7 @@ export const ProfileBlogForm = () => {
         </label>
         <textarea
           className="text-black w-full p-2 resize-none"
-          rows={15}
+          rows={14}
           defaultValue={blog.content}
           id="content"
           {...register('content')}

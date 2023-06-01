@@ -12,7 +12,7 @@ export const Comments = ({ id }: CommentsProps) => {
   if (data?.length === 0) return <div>There are no comments.</div>;
   return (
     <div>
-      <h1>Comments</h1>
+      <h1>Comments {`(${data?.length})`}</h1>
       <ul>
         {data?.map((comment) => (
           <li key={comment.id}>

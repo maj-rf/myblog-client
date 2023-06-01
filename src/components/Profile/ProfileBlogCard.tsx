@@ -4,7 +4,8 @@ import { useRef } from 'react';
 import { useDeleteBlogMutation } from '../../slice/blogsApiSlice';
 import { dateFormatter } from '../../helpers/dateFormatter';
 import { Trash, Edit } from 'lucide-react';
-
+import { notify } from '../../helpers/notify';
+import { errorCheck } from '../../helpers/errorCheck';
 export const ProfileBlogCard = ({ blog }: { blog: IBlog }) => {
   const [deleteBlog] = useDeleteBlogMutation();
   const ref = useRef<HTMLDialogElement | null>(null);
@@ -15,6 +16,19 @@ export const ProfileBlogCard = ({ blog }: { blog: IBlog }) => {
 
   const closeModal = () => {
     ref.current?.close();
+  };
+
+  const handleDeleteBlog = async () => {
+    try {
+      await deleteBlog(blog.id).unwrap();
+      notify({
+        type: 'success',
+        message: `Successfully deleted ${blog.title}`,
+      });
+    } catch (error) {
+      const message = errorCheck(error);
+      if (message) notify({ type: 'error', message });
+    }
   };
 
   return (
@@ -55,7 +69,7 @@ export const ProfileBlogCard = ({ blog }: { blog: IBlog }) => {
             Cancel
           </button>
           <button
-            onClick={() => deleteBlog(blog.id)}
+            onClick={handleDeleteBlog}
             className="inline-flex items-center px-3 py-2 mr-4 text-sm font-medium text-center text-white bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300"
           >
             Delete This Blog

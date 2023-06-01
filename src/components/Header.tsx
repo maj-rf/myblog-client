@@ -1,17 +1,23 @@
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { useAppSelector, useAppDispatch } from '../store';
 import { useLogoutMutation } from '../slice/usersApiSlice';
 import { logout } from '../slice/authSlice';
 import { notify } from '../helpers/notify';
+import { apiSlice } from '../slice/apiSlice';
 export const Header = () => {
   const { user } = useAppSelector((state) => state.auth);
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const [logoutMutation] = useLogoutMutation();
 
   const handleLogout = async () => {
     try {
-      await logoutMutation(null).unwrap();
+      await logoutMutation();
+      navigate('/login');
+      // invalidate all cache
+      dispatch(apiSlice.util.resetApiState());
       dispatch(logout());
+
       notify({ type: 'success', message: 'Logged out!' });
     } catch (err) {
       console.log(err);

@@ -17,7 +17,7 @@ type LoginInput = {
 export const Login = () => {
   const { register, handleSubmit, reset } = useForm<LoginInput>();
   const [passwordShow, setPasswordShow] = useState(false);
-  const [login, { error }] = useLoginMutation();
+  const [login, { error, isLoading }] = useLoginMutation();
   const { user } = useAppSelector((state) => state.auth);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -82,11 +82,14 @@ export const Login = () => {
           <BaseButton
             type="submit"
             className=" border-green-800 hover:text-green-100 hover:bg-green-700"
+            isLoading={isLoading}
           >
-            Login
+            {isLoading ? 'Loading...' : 'Login'}
           </BaseButton>
           {error && (
-            <p className="text-red-500 mt-2 text-center">{errorCheck(error)}</p>
+            <p className="text-red-500 bg-red-200 mt-2 text-center rounded-lg">
+              {errorCheck(error)}
+            </p>
           )}
         </form>
         <div className="text-center py-2 text-gray-600 bg-gray-300 w-full">

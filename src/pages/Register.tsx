@@ -115,15 +115,17 @@ export const Register = () => {
           </div>
           <BaseButton
             type="submit"
-            className=" border-orange-800 hover:text-orange-100 hover:bg-orange-700"
+            className="hover:bg-orange-700 focus:ring-4 focus:outline-none focus:ring-orange-300"
           >
             Register
           </BaseButton>
           {error && (
-            <p className="text-red-500 mt-2 text-center">{errorCheck(error)}</p>
+            <p className="text-red-500 bg-red-200 mt-2 text-center rounded-lg">
+              {errorCheck(error)}
+            </p>
           )}
         </form>
-        <div className="text-center py-2 text-gray-600">
+        <div className="text-center py-2 text-gray-600 bg-gray-300 w-full">
           Already have an account?
           <Link
             to="/login"

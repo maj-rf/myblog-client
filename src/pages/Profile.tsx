@@ -8,8 +8,6 @@ export const Profile = () => {
       <div className="max-w-5xl mx-auto">
         <h1>{user?.username}'s Profile</h1>
         <p>Email: {user?.email}</p>
-        <button>Edit Profile</button>
-
         <ProfileBlogs />
       </div>
     </section>

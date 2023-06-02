@@ -2,7 +2,6 @@ import { Link } from 'react-router-dom';
 import { IBlog } from '../../types/types';
 import { useRef } from 'react';
 import { useDeleteBlogMutation } from '../../slice/blogsApiSlice';
-import { dateFormatter } from '../../helpers/dateFormatter';
 import { Trash, Edit } from 'lucide-react';
 import { notify } from '../../helpers/notify';
 import { errorCheck } from '../../helpers/errorCheck';
@@ -41,7 +40,7 @@ export const ProfileBlog = ({ blog }: { blog: IBlog }) => {
         <td className="py-6 px-6 text-sm font-medium whitespace-nowrap ">
           {blog.published ? 'Published' : 'Draft'}
         </td>
-        <td className=" text-sm font-medium whitespace-nowrap">
+        <td className=" text-sm px-6 font-medium whitespace-nowrap">
           <Link
             to={`/profile/blogs/${blog.id}/edit`}
             state={{ blog: blog }}

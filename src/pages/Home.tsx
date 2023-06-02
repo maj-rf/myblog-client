@@ -1,10 +1,34 @@
+import { RecentBlogs } from '../components/Blog/RecentBlogs';
+import hero from '../assets/hero.png';
+import { Link } from 'react-router-dom';
 export const Home = () => {
   return (
-    <div className="bg-slate-500 flex-1">
-      <h1 className="min-h-screen grid place-items-center">You're @ /</h1>
-      <div className="min-h-screen bg-slate-400 grid place-items-center">
-        hello
+    <section className="flex-1 pb-4">
+      <div className="flex flex-col lg:flex-row items-center justify-center gap-4 min-h-screen px-4 max-w-5xl mx-auto ">
+        <div className="w-full md:w-2/3 text-center md:text-left">
+          <h1 className="mb-2 mt-8 md:mt-0 font-bold text-6xl md:text-7xl text-accent">
+            Muni-muni
+          </h1>
+          <h2 className="mb-4 text-2xl font-medium text-cleanWhite">
+            A Filipino word which occasionally means{' '}
+            <i>to reflect, to ponder, or to speculate.</i>
+            <br />
+            Share your thoughts and stories with the world through blogging,
+            anytime and anywhere.
+          </h2>
+
+          <Link
+            to="/profile"
+            className="px-2 py-1 rounded-xl text-2xl bg-cleanWhite hover:bg-accent"
+          >
+            Start writing today!
+          </Link>
+        </div>
+        <div className="bg-white border border-accent mt-2 box">
+          <img src={hero} alt="minimalistic art of a person blogging" />
+        </div>
       </div>
-    </div>
+      <RecentBlogs />
+    </section>
   );
 };

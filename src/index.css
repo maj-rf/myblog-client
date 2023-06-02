@@ -1,3 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible&family=Inter:wght@400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+  /* background-color: #212737; */
+  background-color: #202855;
+}
+
+.blog-list::-webkit-scrollbar,
+.profile-list::-webkit-scrollbar {
+  height: 0.75rem;
+}
+
+.blog-list::-webkit-scrollbar-track,
+.profile-list::-webkit-scrollbar-track {
+  background-color: #1d2147;
+}
+
+.blog-list::-webkit-scrollbar-thumb,
+.profile-list::-webkit-scrollbar-thumb {
+  background-color: #09d871;
+  border-radius: 100vw;
+}

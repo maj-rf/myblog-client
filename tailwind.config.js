@@ -4,9 +4,23 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: '#F06A35',
-        secondary: '#35BBF0',
+        primary: '#202855',
+        'primary-700': '#1D2147',
+        'primary-600': '#2c3164;',
+        'primary-400': '#535B82',
+        'primary-300': '#4D5593',
+        'primary-200': '#7982AB',
+        secondary: '#5572ED',
+        accent: '#09D871',
+        cleanWhite: '#FFFFFF',
       },
+      gridTemplateColumns: {
+        fluid: 'repeat(auto-fit, minmax(20rem, 1fr))',
+      },
+    },
+    fontFamily: {
+      atkinson: ['Atkinson Hyperlegible', 'sans-serif'],
+      inter: ['Inter', 'sans-serif'],
     },
   },
   plugins: [],

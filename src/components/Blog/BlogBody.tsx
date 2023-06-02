@@ -13,7 +13,7 @@ export const BlogBody = ({ id }: BlogBodyProps) => {
   if (isLoading) return <div>Loading..</div>;
 
   return (
-    <div className="border border-white p-2 container">
+    <div className="border border-white rounded-md p-2 container bg-primary-600">
       <h1 className="mb-2 text-3xl font-bold text-accent">{data?.title}</h1>
       <h2 className="mb-1 text-xl font-medium text-gray-300">
         by {data?.user.username}, {dateCreated},{' '}

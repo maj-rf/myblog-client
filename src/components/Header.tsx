@@ -3,7 +3,6 @@ import { useAppSelector, useAppDispatch } from '../store';
 import { useLogoutMutation } from '../slice/usersApiSlice';
 import { logout } from '../slice/authSlice';
 import { notify } from '../helpers/notify';
-import { apiSlice } from '../slice/apiSlice';
 export const Header = () => {
   const { user } = useAppSelector((state) => state.auth);
   const navigate = useNavigate();
@@ -14,10 +13,7 @@ export const Header = () => {
     try {
       await logoutMutation();
       navigate('/login');
-      // invalidate all cache
-      dispatch(apiSlice.util.resetApiState());
       dispatch(logout());
-
       notify({ type: 'success', message: 'Logged out!' });
     } catch (err) {
       console.log(err);
@@ -65,7 +61,7 @@ export const Header = () => {
                   );
                 }}
               >
-                Profile
+                {user.username}
               </NavLink>
               <button
                 onClick={handleLogout}

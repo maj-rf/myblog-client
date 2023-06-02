@@ -8,6 +8,7 @@ import { useLoginMutation } from '../slice/usersApiSlice';
 import { setCredentials } from '../slice/authSlice';
 import { errorCheck } from '../helpers/errorCheck';
 import { notify } from '../helpers/notify';
+import { apiSlice } from '../slice/apiSlice';
 
 type LoginInput = {
   email: string;
@@ -32,6 +33,8 @@ export const Login = () => {
     try {
       const res = await login(data).unwrap();
       dispatch(setCredentials({ ...res }));
+      // invalidate stale Blog list cache
+      dispatch(apiSlice.util.invalidateTags([{ type: 'Blog', id: 'LIST' }]));
       notify({ type: 'success', message: 'Logged in!' });
       reset();
       navigate('/');

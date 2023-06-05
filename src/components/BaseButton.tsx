@@ -9,7 +9,7 @@ export const BaseButton = ({ children, ...props }: BaseButtonProps) => {
   return (
     <button
       type={props.type ? props.type : 'button'}
-      className={`w-full mt-2 py-2 uppercase transition-all duration-300 ease-in-out bg-white border-2 border-b-4 border-r-4 rounded-lg  ${props.className}`}
+      className={`transition-all duration-300 ease-in-out focus:ring-4 focus:outline-none rounded-lg border ${props.className}`}
       onClick={props.onClick}
       disabled={props.isLoading ? true : false}
     >

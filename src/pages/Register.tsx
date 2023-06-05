@@ -115,7 +115,7 @@ export const Register = () => {
           </div>
           <BaseButton
             type="submit"
-            className="hover:bg-orange-700 focus:ring-4 focus:outline-none focus:ring-orange-300"
+            className="w-full mt-2 py-1 uppercase font-bold bg-orange-400 border-orange-400 hover:text-orange-600 hover:bg-cleanWhite"
           >
             Register
           </BaseButton>

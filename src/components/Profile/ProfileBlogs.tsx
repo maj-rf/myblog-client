@@ -6,8 +6,6 @@ export const ProfileBlogs = () => {
 
   let content;
   if (isLoading) content = <div>Loading...</div>;
-  if (data?.length === 0)
-    content = <div className="text-center">There are no blogs.</div>;
   if (isSuccess)
     content = (
       <>
@@ -54,6 +52,18 @@ export const ProfileBlogs = () => {
           </div>
         </div>
       </>
+    );
+  if (data?.length === 0)
+    content = (
+      <div className="text-center">
+        <Link
+          to={'/profile/blogs/new'}
+          className="gap-1 px-3 py-2 text-lg font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300"
+        >
+          Create Blog
+        </Link>
+        <p>There are no blogs.</p>
+      </div>
     );
   return <>{content}</>;
 };

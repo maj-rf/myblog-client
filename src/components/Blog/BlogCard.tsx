@@ -8,7 +8,7 @@ interface BlogDetailProps {
 
 export const BlogCard = ({ blog }: BlogDetailProps) => {
   return (
-    <div className="bg-primary-700 text-cleanWhite w-80 border rounded-xl hover:-translate-y-1 duration-300 hover:outline hover:outline-4 hover:outline-accent">
+    <div className="bg-primary-600 text-cleanWhite w-80 border rounded-xl hover:-translate-y-1 duration-300 hover:outline hover:outline-4 hover:outline-accent">
       <img
         className="block rounded-t-lg object-cover w-full h-auto"
         src={placeholderblog}

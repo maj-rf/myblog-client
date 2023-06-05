@@ -84,7 +84,7 @@ export const Login = () => {
           </div>
           <BaseButton
             type="submit"
-            className=" border-green-800 hover:text-green-100 hover:bg-green-700"
+            className="w-full mt-2 py-1 uppercase font-bold bg-accent border-accent hover:text-accent hover:bg-cleanWhite"
             isLoading={isLoading}
           >
             {isLoading ? 'Loading...' : 'Login'}

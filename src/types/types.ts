@@ -32,24 +32,18 @@ export interface IUser {
   updatedAt: string;
 }
 
-export interface INewUserCredentials {
-  username: string;
-  email: string;
-  password: string;
-  confirm_pass: string;
-}
-
-export interface IUserCredentials {
-  email: string;
-  password: string;
-}
-
-export interface ILoginResponse {
-  accessToken: string;
-}
-
-export interface IGenericResponse {
-  message: string;
+export interface IRecentComment {
+  content: string;
+  user: {
+    username: string;
+  };
+  blog: {
+    id: string;
+    title: string;
+  }; // blogId
+  id: string;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export type PublicUser = Pick<IUser, 'id' | 'username' | 'email'>;

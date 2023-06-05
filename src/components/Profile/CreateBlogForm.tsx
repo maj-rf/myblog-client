@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import { useCreateBlogMutation } from '../../slice/blogsApiSlice';
 import { notify } from '../../helpers/notify';
 import { errorCheck } from '../../helpers/errorCheck';
+import { BaseButton } from '../BaseButton';
 
 type BlogInput = Pick<IBlog, 'title' | 'content' | 'published'>;
 
@@ -47,12 +48,13 @@ export const CreateBlogForm = () => {
           id="content"
           {...register('content')}
         />
-        <button
-          disabled={isLoading}
-          className="w-full sm:w-auto bg-accent text-black px-2 py-1"
+        <BaseButton
+          type="submit"
+          isLoading={isLoading}
+          className="w-full sm:w-fit mt-2 py-1 px-4 uppercase text-slate-900 font-semibold bg-accent border-accent focus:ring-green-300"
         >
           Create Blog
-        </button>
+        </BaseButton>
       </form>
     </div>
   );

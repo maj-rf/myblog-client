@@ -4,13 +4,15 @@ import { useForm } from 'react-hook-form';
 import { useUpdateBlogMutation } from '../../slice/blogsApiSlice';
 import { errorCheck } from '../../helpers/errorCheck';
 import { notify } from '../../helpers/notify';
+import { BaseButton } from '../BaseButton';
+
 type BlogInput = Pick<IBlog, 'title' | 'content' | 'published'>;
 
 export const UpdateBlogForm = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const blog = location.state?.blog as IBlog;
-  const [updateBlog, { error, isLoading }] = useUpdateBlogMutation();
+  const [updateBlog, { isLoading }] = useUpdateBlogMutation();
   const { register, handleSubmit, reset } = useForm<BlogInput>();
 
   const handleUpdateBlog = async (data: BlogInput) => {
@@ -50,17 +52,13 @@ export const UpdateBlogForm = () => {
           id="content"
           {...register('content')}
         />
-        <button
-          disabled={isLoading}
-          className="w-full sm:w-auto bg-accent text-black px-2 py-1"
+        <BaseButton
+          type="submit"
+          isLoading={isLoading}
+          className="w-full sm:w-fit mt-2 py-1 px-4 uppercase text-slate-900 font-semibold bg-accent border-accent focus:ring-green-300"
         >
           Update Blog
-        </button>
-        {error && (
-          <span className="p-2 text-red-500 mt-2 text-center">
-            {errorCheck(error)}
-          </span>
-        )}
+        </BaseButton>
       </form>
     </div>
   );

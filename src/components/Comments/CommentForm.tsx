@@ -1,6 +1,7 @@
 import { useForm } from 'react-hook-form';
 import { useAddCommentMutation } from '../../slice/commentApiSli';
 import { errorCheck } from '../../helpers/errorCheck';
+import { BaseButton } from '../BaseButton';
 
 type CommentInput = {
   comment_content: string;
@@ -26,12 +27,13 @@ export const CommentForm = ({ id }: { id: string }) => {
           id="comment_content"
           {...register('comment_content')}
         />
-        <button
-          disabled={isLoading}
-          className="w-full sm:w-auto bg-accent text-black px-2 py-1"
+        <BaseButton
+          type="submit"
+          isLoading={isLoading}
+          className="w-full sm:w-fit mt-2 py-1 px-4 uppercase text-slate-900 font-semibold bg-accent border-accent focus:ring-green-300"
         >
           Submit Comment
-        </button>
+        </BaseButton>
         {error && (
           <span className="p-2 text-red-500 mt-2 text-center">
             {errorCheck(error)}

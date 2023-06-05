@@ -1,6 +1,7 @@
 import { RecentBlogs } from '../components/Blog/RecentBlogs';
 import hero from '../assets/hero.png';
 import { Link } from 'react-router-dom';
+import { RecentComments } from '../components/Comments/RecentComments';
 export const Home = () => {
   return (
     <section className="flex-1 pb-4">
@@ -29,6 +30,7 @@ export const Home = () => {
         </div>
       </div>
       <RecentBlogs />
+      <RecentComments />
     </section>
   );
 };

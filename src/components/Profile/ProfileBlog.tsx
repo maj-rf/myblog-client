@@ -35,7 +35,12 @@ export const ProfileBlog = ({ blog }: { blog: IBlog }) => {
     <>
       <tr key={blog.id} className="hover:bg-primary-300 text-cleanWhite">
         <td className="py-6 px-6 text-sm font-medium whitespace-nowrap">
-          <Link to={`/blogs/${blog.id}`}>{blog.title}</Link>
+          <Link
+            to={`/blogs/${blog.id}`}
+            className="underline hover:text-accent"
+          >
+            {blog.title}
+          </Link>
         </td>
         <td className="py-6 px-6 text-sm font-medium whitespace-nowrap ">
           {blog.published ? 'Published' : 'Draft'}

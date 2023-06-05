@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { IUser } from '../types/types';
+import { PublicUser } from '../types/types';
 
 interface UserState {
-  user: IUser | null;
+  user: PublicUser | null;
 }
 
 const initialState: UserState = {

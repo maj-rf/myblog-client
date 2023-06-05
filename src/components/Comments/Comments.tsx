@@ -16,14 +16,16 @@ export const Comments = ({ id }: CommentsProps) => {
         <h1>Comments {`(${data.length})`}</h1>
         <ul>
           {data.map((comment) => (
-            <li key={comment.id}>
+            <li key={comment.id} className="sm:max-w-fit">
               <div className="flex gap-2 ">
                 <p className="text-accent text-xl font-semibold">
                   {comment.user.username}
                 </p>
                 <p>{dateFormatter(comment.createdAt)}</p>
               </div>
-              <p>{comment.content}</p>
+              <p className="speech-bubble mt-2 p-4 bg-primary-400 text-cleanWhite rounded-lg">
+                {comment.content}
+              </p>
             </li>
           ))}
         </ul>

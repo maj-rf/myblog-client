@@ -6,11 +6,11 @@ export const Home = () => {
   return (
     <section className="flex-1 pb-4">
       <div className="flex flex-col lg:flex-row items-center justify-center gap-4 min-h-screen px-4 max-w-5xl mx-auto ">
-        <div className="w-full md:w-2/3 text-center md:text-left">
+        <div className="w-full md:w-2/3 text-center lg:text-left">
           <h1 className="mb-2 mt-8 md:mt-0 font-bold text-6xl md:text-7xl text-accent">
             Muni-muni
           </h1>
-          <h2 className="mb-4 text-2xl font-medium text-cleanWhite">
+          <h2 className="my-8 text-2xl font-medium text-cleanWhite">
             A Filipino word which occasionally means{' '}
             <i>to reflect, to ponder, or to speculate.</i>
             <br />
@@ -25,7 +25,7 @@ export const Home = () => {
             Start writing today!
           </Link>
         </div>
-        <div className="bg-white border border-accent mt-2 box">
+        <div className="bg-slate-200 mt-4 md:mt-0 rounded-lg">
           <img src={hero} alt="minimalistic art of a person blogging" />
         </div>
       </div>

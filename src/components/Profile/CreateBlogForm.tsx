@@ -1,17 +1,18 @@
 import { useNavigate } from 'react-router-dom';
 import { IBlog } from '../../types/types';
-import { useForm } from 'react-hook-form';
+import { useForm, Controller } from 'react-hook-form';
 import { useCreateBlogMutation } from '../../slice/blogsApiSlice';
 import { notify } from '../../helpers/notify';
 import { errorCheck } from '../../helpers/errorCheck';
 import { BaseButton } from '../BaseButton';
+import TextEditor from '../TextEditor';
 
-type BlogInput = Pick<IBlog, 'title' | 'content' | 'published'>;
+export type BlogInput = Pick<IBlog, 'title' | 'content' | 'published'>;
 
 export const CreateBlogForm = () => {
   const navigate = useNavigate();
   const [createBlog, { isLoading }] = useCreateBlogMutation();
-  const { register, handleSubmit, reset } = useForm<BlogInput>();
+  const { register, handleSubmit, reset, control } = useForm<BlogInput>();
 
   const handleCreateBlog = async (data: BlogInput) => {
     try {
@@ -42,12 +43,24 @@ export const CreateBlogForm = () => {
         <label htmlFor="content" className="text-cleanWhite">
           Content
         </label>
-        <textarea
-          className="text-black w-full p-2 resize-none"
-          rows={14}
-          id="content"
-          {...register('content')}
+        <Controller
+          name="content"
+          control={control}
+          defaultValue="Your content here"
+          render={({ field: { onChange, onBlur, value, ref } }) => (
+            <TextEditor onChange={onChange} value={value} />
+          )}
         />
+        <div className="flex gap-1 items-center mt-2 font-semibold">
+          <label htmlFor="published" className="text-cleanWhite">
+            Do you want to publish this blog?
+          </label>
+          <input
+            className="w-5 h-5"
+            type="checkbox"
+            {...register('published')}
+          />
+        </div>
         <BaseButton
           type="submit"
           isLoading={isLoading}

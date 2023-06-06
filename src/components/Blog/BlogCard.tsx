@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { IBlog } from '../../types/types';
 import placeholderblog from '../../assets/placeholderblog.jpg';
+import parse from 'html-react-parser';
 
 interface BlogDetailProps {
   blog: IBlog;
@@ -18,9 +19,6 @@ export const BlogCard = ({ blog }: BlogDetailProps) => {
         <h2 className="mb-2 text-2xl font-semibold tracking-tight">
           {blog.title}
         </h2>
-        <p className="mb-3 font-normal truncate text-ellipsis">
-          {blog.content}
-        </p>
         <Link
           to={`/blogs/${blog.id}`}
           className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300"

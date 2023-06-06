@@ -1,11 +1,12 @@
 import { useGetRecentCommentsQuery } from '../../slice/commentApiSli';
 import { Link } from 'react-router-dom';
+import { Loading } from '../Loading';
 
 export const RecentComments = () => {
   const { data, isLoading, isSuccess } = useGetRecentCommentsQuery();
 
   let content;
-  if (isLoading) content = <div> Loading... </div>;
+  if (isLoading) content = <Loading />;
   if (isSuccess)
     content = (
       <section className="px-4 py-8 mt-8 md:mt-0">

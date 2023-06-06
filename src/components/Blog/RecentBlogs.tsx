@@ -1,10 +1,11 @@
 import { useGetRecentBlogsQuery } from '../../slice/blogsApiSlice';
+import { Loading } from '../Loading';
 import { BlogCard } from './BlogCard';
 
 export const RecentBlogs = () => {
   const { data, isLoading, isSuccess } = useGetRecentBlogsQuery();
   let content;
-  if (isLoading) content = <div>Loading...</div>;
+  if (isLoading) content = <Loading />;
   if (isSuccess)
     content = (
       <section className="p-4 mt-8 md:mt-0">

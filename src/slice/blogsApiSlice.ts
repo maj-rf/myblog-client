@@ -32,8 +32,8 @@ export const blogsApiSlice = apiSlice.injectEndpoints({
         url: `blogs/blog/${id}`,
         method: 'DELETE',
       }),
-      invalidatesTags: (result, error, arg) => [
-        { type: 'Blog', id: arg.id },
+      invalidatesTags: [
+        { type: 'Blog', id: 'LIST' },
         { type: 'Comment', id: 'LIST' },
       ],
     }),
@@ -43,7 +43,10 @@ export const blogsApiSlice = apiSlice.injectEndpoints({
         method: 'PUT',
         body: data,
       }),
-      invalidatesTags: [{ type: 'Blog', id: 'LIST' }],
+      invalidatesTags: [
+        { type: 'Blog', id: 'LIST' },
+        { type: 'Comment', id: 'LIST' },
+      ],
     }),
     createBlog: builder.mutation({
       query: (data) => ({

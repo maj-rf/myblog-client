@@ -3,7 +3,7 @@ import { useAppSelector, useAppDispatch } from '../store';
 import { useLogoutMutation } from '../slice/usersApiSlice';
 import { logout } from '../slice/authSlice';
 import { notify } from '../helpers/notify';
-import muni from '../../public/muni.svg';
+import muni from '../assets/muni.svg';
 export const Header = () => {
   const { user } = useAppSelector((state) => state.auth);
   const navigate = useNavigate();

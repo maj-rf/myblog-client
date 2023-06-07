@@ -1,11 +1,12 @@
 import { useGetProfileBlogsQuery } from '../../slice/blogsApiSlice';
 import { Link } from 'react-router-dom';
 import { ProfileBlog } from './ProfileBlog';
+import { Loading } from '../Loading';
 export const ProfileBlogs = () => {
   const { data, isLoading, isSuccess } = useGetProfileBlogsQuery();
 
   let content;
-  if (isLoading) content = <div>Loading...</div>;
+  if (isLoading) content = <Loading />;
   if (isSuccess)
     content = (
       <>

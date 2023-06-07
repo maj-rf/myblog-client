@@ -15,6 +15,7 @@ export const blogsApiSlice = apiSlice.injectEndpoints({
     }),
     getBlog: builder.query<IBlog, string>({
       query: (id) => `blogs/blog/${id}`,
+      providesTags: [{ type: 'Blog', id: 'LIST' }],
     }),
     getProfileBlogs: builder.query<IBlog[], void>({
       query: () => 'blogs/profile',
@@ -31,7 +32,10 @@ export const blogsApiSlice = apiSlice.injectEndpoints({
         url: `blogs/blog/${id}`,
         method: 'DELETE',
       }),
-      invalidatesTags: ['Blog'],
+      invalidatesTags: [
+        { type: 'Blog', id: 'LIST' },
+        { type: 'Comment', id: 'LIST' },
+      ],
     }),
     updateBlog: builder.mutation({
       query: ({ id, data }) => ({
@@ -39,7 +43,10 @@ export const blogsApiSlice = apiSlice.injectEndpoints({
         method: 'PUT',
         body: data,
       }),
-      invalidatesTags: (result, error, arg) => [{ type: 'Blog', id: arg.id }],
+      invalidatesTags: [
+        { type: 'Blog', id: 'LIST' },
+        { type: 'Comment', id: 'LIST' },
+      ],
     }),
     createBlog: builder.mutation({
       query: (data) => ({

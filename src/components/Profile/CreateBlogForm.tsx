@@ -47,7 +47,7 @@ export const CreateBlogForm = () => {
           name="content"
           control={control}
           defaultValue="Your content here"
-          render={({ field: { onChange, onBlur, value, ref } }) => (
+          render={({ field: { onChange, value } }) => (
             <TextEditor onChange={onChange} value={value} />
           )}
         />

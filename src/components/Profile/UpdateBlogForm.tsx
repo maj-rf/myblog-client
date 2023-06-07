@@ -50,7 +50,7 @@ export const UpdateBlogForm = () => {
           name="content"
           control={control}
           defaultValue={blog.content}
-          render={({ field: { onChange, onBlur, value, ref } }) => (
+          render={({ field: { onChange, value } }) => (
             <TextEditor onChange={onChange} value={value} />
           )}
         />

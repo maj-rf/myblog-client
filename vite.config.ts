@@ -9,7 +9,7 @@ export default defineConfig({
       '/api': {
         target: 'https://muni-api.onrender.com/api',
         changeOrigin: true,
-        secure: false,
+        secure: true,
         rewrite: (path) => path.replace(/^\/api/, ''),
       },
     },

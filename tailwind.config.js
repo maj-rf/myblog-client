@@ -18,9 +18,6 @@ export default {
         fluid: 'repeat(auto-fit, minmax(20rem, 1fr))',
       },
     },
-    backgroundImage: {
-      home: 'url(./src/assets/home.jpg)',
-    },
     fontFamily: {
       atkinson: ['Atkinson Hyperlegible', 'sans-serif'],
       inter: ['Inter', 'sans-serif'],

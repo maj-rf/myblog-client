@@ -2,10 +2,14 @@ import { RecentBlogs } from '../components/Blog/RecentBlogs';
 import hero from '../assets/hero.png';
 import { Link } from 'react-router-dom';
 import { RecentComments } from '../components/Comments/RecentComments';
+import home from '../assets/home.jpg';
 export const Home = () => {
   return (
     <section className="flex-1 pb-4">
-      <div className="bg-home bg-center bg-cover px-4 aspect-video">
+      <div
+        className="bg-center bg-cover px-4 aspect-video"
+        style={{ backgroundImage: `url(${home})` }}
+      >
         <div className="min-h-screen max-w-5xl mx-auto flex flex-col lg:flex-row items-center justify-center gap-4 ">
           <div className=" text-center lg:text-left flex-1">
             <h1 className="mt-8 lg:mt-0 font-bold text-6xl md:text-7xl text-accent uppercase">

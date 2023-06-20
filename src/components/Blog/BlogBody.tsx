@@ -25,7 +25,7 @@ export const BlogBody = ({ id }: BlogBodyProps) => {
           on {new Date(`${data.createdAt}`).toLocaleDateString()} (
           {dateFormatter(data.createdAt)})
         </h2>
-        <div>{parse(data.content)}</div>
+        <div className="no-tw-base">{parse(data.content)}</div>
       </div>
     );
 

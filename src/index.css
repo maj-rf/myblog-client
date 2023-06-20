@@ -4,6 +4,38 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  .no-tw-base {
+    font-size: revert;
+    font-weight: revert;
+    margin: revert;
+    display: revert;
+    vertical-align: revert;
+    max-width: revert;
+    height: revert;
+    border-width: revert;
+    border-color: revert;
+    border-style: revert;
+    outline: revert;
+    list-style: revert;
+    padding: revert;
+  }
+
+  .no-tw-base ul,
+  .no-tw-base ol {
+    padding: revert;
+    list-style: revert;
+    padding: revert;
+  }
+  .no-tw-base a {
+    text-decoration: revert;
+    text-decoration-color: #09d871;
+  }
+
+  .no-tw-base a:hover {
+    color: #09d871;
+  }
+}
 body {
   /* background-color: #212737; */
   background-color: #202855;

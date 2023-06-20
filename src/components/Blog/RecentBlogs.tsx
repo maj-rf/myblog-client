@@ -8,7 +8,7 @@ export const RecentBlogs = () => {
   if (isLoading) content = <Loading />;
   if (isSuccess)
     content = (
-      <section className="p-4 mt-8 md:mt-0">
+      <section className="p-4 mt-8">
         <div className=" max-w-5xl mx-auto">
           <h1 className="mb-2 text-3xl text-center font-bold text-cleanWhite">
             Recent Blogs
